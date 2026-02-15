@@ -5,12 +5,6 @@ import { useState } from "react";
 import { SpaceNewsNode } from "@/types";
 import { navTexts } from "@/constants/navTexts";
 
-interface NavTexts {
-    title: String
-    withChild: boolean
-    hidden: boolean
-}
-
 interface NavbarContentTypes {
     newsPosts: SpaceNewsNode[],
     setNavbarExpanded: () => void,
@@ -66,7 +60,6 @@ const NavbarContent = ({newsPosts, setNavbarExpanded}: NavbarContentTypes) => {
                         sx={{
                             display: 'flex',
                             flexDirection: 'row',
-                            justifyContent: 'space-between',
                             width: '170px',
                             alignItems: 'center'
                         }}
@@ -77,6 +70,7 @@ const NavbarContent = ({newsPosts, setNavbarExpanded}: NavbarContentTypes) => {
                                 width: '10px',
                                 backgroundColor: '#FF4228',
                                 borderRadius: '50%',
+                                marginRight: '9px',
                             }}
                         />
                         <Typography
@@ -140,7 +134,7 @@ const NavbarContent = ({newsPosts, setNavbarExpanded}: NavbarContentTypes) => {
                                 backgroundColor: 'white',
                                 borderRadius: '5px',
                                 "& .MuiOutlinedInput-input": {
-                                    color: "black", 
+                                    color: "#131313", 
                                 },
                             }}
                         />
@@ -249,7 +243,7 @@ const NavbarContent = ({newsPosts, setNavbarExpanded}: NavbarContentTypes) => {
                     <Stack
                         sx={{
                             width: '189px',
-                            backgroundColor: 'black',
+                            backgroundColor: '#131313',
                             padding: '21px 27px',
                             display: 'flex',
                             flexDirection: 'row',

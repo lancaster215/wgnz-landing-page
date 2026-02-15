@@ -3,6 +3,7 @@ import { SpaceNewsNode } from '@/types';
 import { GetServerSideProps, NextPage } from 'next';
 import client from '@/lib/apollo-client';
 import Main from '@/components/main';
+import APImockResponse from '@/constants/APImockResponse.json'
 
 const GET_SPACE_NEWS = gql`
   query GetSpaceNews($count: Int) {
@@ -26,7 +27,7 @@ export interface HomeProps {
 }
 
 const Home: NextPage<HomeProps> = ({ newsPosts, ssrDuration }) => {
-  return ( <Main ssrDuration={ssrDuration} newsPosts={newsPosts} />);
+  return ( <Main ssrDuration={ssrDuration} newsPosts={newsPosts.length > 0 ? newsPosts : APImockResponse} />);
 }
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async (context) => {

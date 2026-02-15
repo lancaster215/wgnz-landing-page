@@ -1,18 +1,24 @@
 import { HomeProps } from "@/pages";
-import { Accordion, Box, Stack, Typography, AccordionSummary, AccordionDetails, Button, TextField, Menu, MenuItem } from "@mui/material"
-import { useEffect, useState } from "react"
+import { Box, Stack, Typography, Button, Menu, MenuItem } from "@mui/material"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image";
 import NavbarContent from "./navbarContent";
 import { motion, AnimatePresence } from "framer-motion";
 import { navTexts } from "@/constants/navTexts";
 import CustomButton from "./CustomButton";
+import SixthSection from "./sections/SixthSection";
+import SeventhSection from "./sections/SeventhSection";
+import EigthSection from "./sections/EightSection";
+import NinthSection from "./sections/NinthSection";
+import TenthSection from "./sections/TenthSection";
+import EleventhSection from "./sections/EleventhSection";
+import CustomSectionHeader from "./CustomSectionHeader";
 
 const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
     const [progress, setProgress] = useState<number>(0);
     const [navBarExpanded, setNavbarExpanded] = useState<boolean>(false);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
-    const open = Boolean(anchorEl);
+    const [activeIndex, setActiveIndex] = useState<number>(0);
 
     const handleNavbarDropdownClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         console.log('event.currentTarget', event.currentTarget.id)
@@ -153,7 +159,7 @@ const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
                             return !nav.hidden && nav.withChild ? (
                                 <>
                                     <Button
-                                        id={nav.title} // Used as the identifier for the anchor
+                                        id={nav.title}
                                         aria-controls={isMenuOpen ? `menu-${nav.id}` : undefined}
                                         aria-haspopup="true"
                                         aria-expanded={isMenuOpen ? 'true' : undefined}
@@ -169,7 +175,7 @@ const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
                                                 lineHeight: '114.99999999999999%',
                                                 letterSpacing: '-2%',
                                                 textTransform: 'none',
-                                                color: 'black',
+                                                color: '#131313',
                                                 marginRight: '5px'
                                             }}
                                         >
@@ -241,7 +247,7 @@ const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
                             gap={1}
                             sx={{
                                 alignItems: 'center',
-                                backgroundColor: 'black',
+                                backgroundColor: '#131313',
                                 padding: '25px',
                                 width: '189px',
                                 justifyContent: 'space-between',
@@ -393,79 +399,25 @@ const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
                     padding: '20px'
                 }}
             >
-                <Stack direction="row" justifyContent="space-between">
-                    <Stack
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            justifyContent: 'space-around',
-                            width: '10%',
-                            alignItems: 'flex-start'
-                        }}
-                    >
-                        <Box
-                            sx={{
-                                height: '10px',
-                                width: '10px',
-                                backgroundColor: '#FF4228',
-                                borderRadius: '50%',
-                                marginTop: '5px',
-                            }}
-                        />
-                        <Typography
-                            sx={{
-                                fontSize: '14px'
-                            }}
-                        >
-                            Meet the FDI
-                        </Typography>
-                    </Stack>
-                    <Stack
-                        sx={{
-                            width: '80%',
-                            textAlign: 'center',
-                        }}
-                    >
-                        <Typography
-                            sx={{
-                                fontWeight: 500,
-                                fontSize: '101px',
-                                lineHeight: '85%',
-                                letterSpacing: '-2%',
-                                color: 'rgb(0,0,0,1)'
-                            }}
-                        >
-                            About Us
-                        </Typography>
-                    </Stack>
-                    <Stack
-                        sx={{
-                            width: '10%',
-                            alignItems: 'flex-end'
-                        }}
-                    >
-                        <Box
-                            sx={{
-                                height: '10px',
-                                width: '10px',
-                                backgroundColor: '#131313',
-                                borderRadius: '50%',
-                            }}
-                        />
-                    </Stack>
-                </Stack>
+                <CustomSectionHeader 
+                    leftText="Meet the FDI" 
+                    leftTextColor="#131313" 
+                    middleText="About Us" 
+                    middleTextColor="#131313" 
+                    withRightEl={true}
+                />
 
                 <Stack
                     gap="28px"
                     sx={{
                         marginTop: "140px",
-                        display: {xs: 'block', sm: 'block', md: 'flex'},
-                        flexDirection: {xs: 'column', sm: 'column', md: 'row'},
+                        display: {xs: 'block', sm: 'block', md: 'block', lg: 'flex'},
+                        flexDirection: {xs: 'column', sm: 'column', md: 'column', lg: 'row'},
                     }}
                 >
                     <Stack
                         sx={{
-                            width: {xs: '100%', sm: '100%', md: '65%'},
+                            width: {xs: '100%', sm: '100%', md: '100%', lg: '30%'},
                         }}
                     >
                         <Typography
@@ -502,14 +454,207 @@ const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
                     </Stack>
                     <Stack
                         sx={{
-                            width: {xs: '100%', sm: '100%', md: '65%'},
+                            width: {xs: '100%', sm: '100%', md: '100%', lg: '70%'},
                             alignItems: 'flex-end'
                         }}
                     >
-                        <Image src="/assets/cover-photos/coverphoto1.png" alt='cover-photo-2' height={648} width={995} />
+                        <Image src="/assets/cover-photos/coverphoto2.png" alt='cover-photo-2' height={648} width={995} />
                     </Stack>
                 </Stack>
             </Stack>
+
+            {/* Fifth section */}
+            <Stack
+                sx={{
+                    padding: '20px',
+                    backgroundColor: '#1B1B1B'
+                }}
+            >
+                <CustomSectionHeader 
+                    leftText="Expertise" 
+                    leftTextColor="#FFFFFF" 
+                    middleText="What Do We Do" 
+                    middleTextColor="#FFFFFF" 
+                    withRightEl={false}
+                />
+
+                <Stack
+                    gap="28px"
+                    sx={{
+                        marginTop: "140px",
+                        display: {xs: 'block', sm: 'block', md: 'flex'},
+                        flexDirection: {xs: 'column', sm: 'column', md: 'row'},
+                    }}
+                >
+                    <Stack
+                        sx={{
+                            width: {xs: '100%', sm: '100%', md: '65%'},
+                        }}
+                    >
+                        <Typography
+                            sx={{
+                                fontWeight: 700,
+                                fontSize: '32px',
+                                lineHeight: '110%',
+                                letterSpacing: '-2%',
+                                marginBottom: '32px',
+                                color: '#ffffff',
+                            }}
+                        >
+                            At the heart of our business is the ability to provide comprehensive, end-to-end solutions tailored to meet the unique needs of every client. 
+                        </Typography>
+                        <Typography
+                            sx={{
+                                fontWeight: 600,
+                                fontSize: '14px',
+                                lineHeight: '120%',
+                                letterSpacing: '-2%',
+                                color: 'rgb(255,255,255,0.5)',
+                                marginBottom: '64px',
+                                maxWidth: '334px',
+                            }}
+                        >
+                            Our diverse range of services ensures that we can manage all aspects of a project, from initial design concepts to final execution and ongoing support.
+                        </Typography>
+                        <CustomButton
+                            btnColor="#FF4228"
+                            btnText="Learn More"
+                            btnTextColor="#ffffff"
+                        />
+                            
+                    </Stack>
+                    <Stack
+                        sx={{
+                            width: {xs: '100%', sm: '100%', md: '65%'},
+                        }}
+                    >
+                        <Typography
+                            sx={{
+                                color: 'rgb(255,255,255,0.5)',
+                            }}
+                        >
+                            News:
+                        </Typography>
+                        <Stack
+                            sx={{
+                                borderLeft: '1px solid rgb(255,255,255,0.5)'
+                            }}
+                        >
+                            <Stack direction="row" width="100%">
+                                {/* LEFT MENU */}
+                                <Stack
+                                    sx={{
+                                        width: "335px",
+                                        borderLeft: "1px solid rgba(255,255,255,0.5)",
+                                        borderTop: "1px solid rgba(255,255,255,0.5)"
+                                    }}
+                                >
+                                    {newsPosts.map((news, index) => {
+                                        const isActive = activeIndex === index;
+
+                                        return (
+                                            <Stack
+                                                key={index}
+                                                component="button"
+                                                onClick={() => setActiveIndex(index)}
+                                                sx={{
+                                                    all: "unset",
+                                                    cursor: "pointer",
+                                                    padding: "16px",
+                                                    backgroundColor: isActive ? "#ffffff" : "#1B1B1B",
+                                                    borderBottom: "1px solid rgba(255,255,255,0.2)",
+                                                }}
+                                                >
+                                                <Typography
+                                                    sx={{
+                                                    color: isActive ? "#131313" : "white",
+                                                    fontSize: "14px",
+                                                    fontWeight: 500,
+                                                    }}
+                                                >
+                                                    {news.title}
+                                                </Typography>
+                                            </Stack>
+                                        );
+                                    })}
+                                </Stack>
+
+                                {/* RIGHT PANEL */}
+                                <Stack
+                                    sx={{
+                                        flex: 1,
+                                        backgroundColor: "#ffffff",
+                                        padding: "40px",
+                                    }}
+                                >
+                                    <Image src="/assets/cover-photos/coverphoto3.png" alt="cover-photo-3" width={577} height={385} />
+                                    <Stack direction="row" gap="20px" sx={{marginTop: '24px'}}>
+                                        <Stack
+                                            sx={{
+                                                width: '60%'
+                                            }}
+                                        >
+                                            <Typography>
+                                                <Typography 
+                                                    variant="h4" 
+                                                    sx={{
+                                                        ontWeight: 700,
+                                                        fontStyle: 'bold',
+                                                        fontSize: '32px',
+                                                        lineHeight: '110.00000000000001%%',
+                                                        letterSpacing: '-1%',
+                                                    }}
+                                                >
+                                                    {newsPosts[activeIndex].title}
+                                                </Typography>
+                                            </Typography>
+                                        </Stack>
+                                        <Stack
+                                            sx={{
+                                                width: '40%'
+                                            }}
+                                        >
+                                            <Typography
+                                                mt={2}
+                                                dangerouslySetInnerHTML={{
+                                                    __html: newsPosts[activeIndex].content,
+                                                }}
+                                                sx={{
+                                                    marginBottom: '50px'
+                                                }}
+                                            />
+                                            {newsPosts[activeIndex].articleDetails?.articleUrl && (
+                                                <a href={newsPosts[activeIndex].articleDetails.articleUrl} target="_blank" rel="noopener noreferrer" style={{color: '#FF4228'}}>
+                                                    Read Original Source →
+                                                </a>
+                                            )}
+                                        </Stack>
+                                    </Stack>
+                                    
+                                </Stack>
+                            </Stack>
+                        </Stack>
+                    </Stack>
+                </Stack>
+            </Stack>
+
+            {/* Sixth section */}
+            <SixthSection />
+
+            {/* Seventh section */}
+            <SeventhSection newsPosts={newsPosts} />
+
+            {/* Eight section */}
+            <EigthSection />
+
+            {/* Ninth section */}
+            <NinthSection />
+
+            {/* Tenth section */}
+            <TenthSection />
+
+            {/* Eleventh section */}
+            <EleventhSection />
         </Stack>
     )
 }

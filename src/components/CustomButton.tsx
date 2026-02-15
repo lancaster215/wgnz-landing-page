@@ -5,15 +5,16 @@ interface CustomButtonTypes {
     btnColor: string,
     btnText: string,
     btnTextColor: string,
+    btnWidth?: string,
 }
 
-export default function CustomButton({btnColor, btnText, btnTextColor}: CustomButtonTypes){
+export default function CustomButton({btnColor, btnText, btnTextColor, btnWidth}: CustomButtonTypes){
     return (
         <Button 
             sx={{
                 width: {
                     xs: "100%",
-                    sm: "215px",
+                    sm: btnWidth ?? "215px",
                 },
                 padding: "16px 23px",
                 backgroundColor: btnColor,
