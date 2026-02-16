@@ -59,7 +59,7 @@ export default function EigthSection() {
                 </Stack>
                 <Stack
                     sx={{
-                        width: "60%", 
+                        width: { xs: '100%', sm: '60%'}
                     }}
                 >
                     <Box 

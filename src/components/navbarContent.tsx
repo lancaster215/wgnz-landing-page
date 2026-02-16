@@ -2,15 +2,13 @@ import { Stack, Typography, Box, TextField, Button, Accordion, AccordionSummary,
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Image from "next/image";
 import { useState } from "react";
-import { SpaceNewsNode } from "@/types";
 import { navTexts } from "@/constants/navTexts";
 
 interface NavbarContentTypes {
-    newsPosts: SpaceNewsNode[],
     setNavbarExpanded: () => void,
 }
 
-const NavbarContent = ({newsPosts, setNavbarExpanded}: NavbarContentTypes) => {
+const NavbarContent = ({setNavbarExpanded}: NavbarContentTypes) => {
     const [form, setForm] = useState({ email: '' });
     
     const handleSubmit = async (e: React.FormEvent) => {

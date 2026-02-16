@@ -13,6 +13,10 @@ import NinthSection from "./sections/NinthSection";
 import TenthSection from "./sections/TenthSection";
 import EleventhSection from "./sections/EleventhSection";
 import CustomSectionHeader from "./CustomSectionHeader";
+import TwelvethSection from "./sections/TwelvethSection";
+import ThirteenthSection from "./sections/ThirteenthSection";
+import FourteenthSection from "./sections/FourteenthSection";
+import Footer from "./sections/Footer";
 
 const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
     const [progress, setProgress] = useState<number>(0);
@@ -110,7 +114,7 @@ const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
                         right: 0,
                     }}
                 >
-                    <NavbarContent newsPosts={newsPosts} setNavbarExpanded={() => setNavbarExpanded(false)}/>
+                    <NavbarContent setNavbarExpanded={() => setNavbarExpanded(false)}/>
                 </motion.div>
             </AnimatePresence>
         )
@@ -655,6 +659,18 @@ const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
 
             {/* Eleventh section */}
             <EleventhSection />
+
+            {/* Twelveth section */}
+            <TwelvethSection newsPosts={newsPosts}/>
+
+            {/* Thirteenth section */}
+            <ThirteenthSection />
+
+            {/* Fourteenth section */}
+            <FourteenthSection />
+
+            {/* Footer */}
+            <Footer/>
         </Stack>
     )
 }

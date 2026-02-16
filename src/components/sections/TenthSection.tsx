@@ -94,7 +94,7 @@ export default function TenthSection(){
                 <Stack sx={{width: '30%'}}/>
                 <Stack
                     sx={{
-                        width: '70%',
+                        width: {xs: '100%', sm: '70%'},
                     }}
                 >
                     {clients.map((client, index) => {
