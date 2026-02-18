@@ -3,17 +3,16 @@ import { motion } from "framer-motion";
 import CustomSectionHeader from "../CustomSectionHeader";
 import { useState } from "react";
 import CustomButton from "../CustomButton";
-import { SpaceNewsNode } from "@/types";
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { LatestNews, SpaceNewsNode } from "@/types";
 
 const MotionStack = motion(Stack);
 
 interface TwelvethSectionProps {
   newsPosts: SpaceNewsNode[];
+  latestNews: LatestNews;
 }
 
-export default function TwelvethSection({ newsPosts }: TwelvethSectionProps) {
+export default function TwelvethSection({ newsPosts, latestNews }: TwelvethSectionProps) {
   const [direction, setDirection] = useState<'left' | 'right'>('right');
 
   // Map images and ensure we have enough items for a smooth loop if needed
@@ -29,7 +28,7 @@ export default function TwelvethSection({ newsPosts }: TwelvethSectionProps) {
         <CustomSectionHeader
           leftText="Blog"
           leftTextColor="#FFFFFF"
-          middleText="Latest News"
+          middleText={latestNews.latestNewsHeader}
           middleTextColor="#FFFFFF"
           withRightEl={true}
         />
@@ -59,7 +58,7 @@ export default function TwelvethSection({ newsPosts }: TwelvethSectionProps) {
                     color: 'white',
                 }}
             >
-                Stay up-to-date with the latest developments and exciting announcements from our team. 
+              {latestNews.latestNewsTitle}
             </Typography>
             <Typography
                 sx={{
@@ -72,7 +71,7 @@ export default function TwelvethSection({ newsPosts }: TwelvethSectionProps) {
                     maxWidth: '334px',
                 }}
             >
-                From groundbreaking project launches to new partnerships and industry insights, our Latest News section brings you the most recent updates on everything happening within our company.
+              {latestNews.latestNewsBody}
             </Typography>
             <CustomButton
                 btnColor="#FF4228"

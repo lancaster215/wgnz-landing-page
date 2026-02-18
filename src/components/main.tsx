@@ -18,11 +18,24 @@ import ThirteenthSection from "./sections/ThirteenthSection";
 import FourteenthSection from "./sections/FourteenthSection";
 import Footer from "./sections/Footer";
 
-const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
+const Main = ({ ssrDuration, newsPosts, homepageData }: HomeProps) => {
     const [progress, setProgress] = useState<number>(0);
     const [navBarExpanded, setNavbarExpanded] = useState<boolean>(false);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [activeIndex, setActiveIndex] = useState<number>(0);
+
+    const aboutUs = homepageData[0]?.aboutUs;
+    const whatDoWeDo = homepageData[0]?.whatDoWeDo
+    const headerForm = homepageData[0]?.headerForm
+    const followLinkedin = homepageData[0]?.followLinkedin
+    const featuredCases = homepageData[0]?.featuredCases
+    const ourPartners = homepageData[0]?.ourPartners
+    const officeSpace = homepageData[0]?.officeSpace
+    const ourClients = homepageData[0]?.ourClients
+    const awardsAndAccreditation = homepageData[0]?.awardsAndAccreditation
+    const latestNews = homepageData[0]?.latestNews
+    const newsletter = homepageData[0]?.newsletter
+    const letsGetInTouch = homepageData[0]?.letsGetInTouch
 
     const handleNavbarDropdownClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         console.log('event.currentTarget', event.currentTarget.id)
@@ -32,7 +45,7 @@ const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
         setAnchorEl(null);
     };
 
-    console.log(newsPosts)
+    console.log('newsPosts', newsPosts, homepageData)
     useEffect(() => {
         const intervalTime = Math.max(ssrDuration / 100, 10);
         const timer = setInterval(() => {
@@ -114,7 +127,7 @@ const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
                         right: 0,
                     }}
                 >
-                    <NavbarContent setNavbarExpanded={() => setNavbarExpanded(false)}/>
+                    <NavbarContent headerForm={headerForm} setNavbarExpanded={() => setNavbarExpanded(false)}/>
                 </motion.div>
             </AnimatePresence>
         )
@@ -397,7 +410,7 @@ const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
                 }}
             />
 
-            {/* Fourth section */}
+            {/* Fourth section: About Us */}
             <Stack
                 sx={{
                     padding: '20px'
@@ -434,7 +447,7 @@ const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
                                 marginBottom: '32px',
                             }}
                         >
-                            (FDI) stands as one of the largest Workplace Fit-out contractors across New Zealand, delivering inspiring offices since 1997. 
+                            {aboutUs.aboutUsHead}
                         </Typography>
                         <Typography
                             sx={{
@@ -447,7 +460,7 @@ const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
                                 maxWidth: '334px',
                             }}
                         >
-                            Through our customer obsession, we've cultivated enduring client relationships by meeting project deadlines, pioneering cutting-edge construction solutions, delivering optimal value, and unwaveringly upholding our exceptional workmanship standards.
+                            {aboutUs.aboutUsBody}
                         </Typography>
                         <CustomButton
                             btnColor="rgb(0,0,0,1)"
@@ -467,7 +480,7 @@ const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
                 </Stack>
             </Stack>
 
-            {/* Fifth section */}
+            {/* Fifth section: What Do We Do */}
             <Stack
                 sx={{
                     padding: '20px',
@@ -505,7 +518,7 @@ const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
                                 color: '#ffffff',
                             }}
                         >
-                            At the heart of our business is the ability to provide comprehensive, end-to-end solutions tailored to meet the unique needs of every client. 
+                            {whatDoWeDo.whatDoWeDoHead}
                         </Typography>
                         <Typography
                             sx={{
@@ -518,7 +531,7 @@ const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
                                 maxWidth: '334px',
                             }}
                         >
-                            Our diverse range of services ensures that we can manage all aspects of a project, from initial design concepts to final execution and ongoing support.
+                            {whatDoWeDo.whatDoWeDoBody}
                         </Typography>
                         <CustomButton
                             btnColor="#FF4228"
@@ -642,32 +655,32 @@ const Main = ({ ssrDuration, newsPosts }: HomeProps) => {
                 </Stack>
             </Stack>
 
-            {/* Sixth section */}
-            <SixthSection />
+            {/* Sixth section: Follow LinkedIn */}
+            <SixthSection followLinkedin={followLinkedin}/>
 
-            {/* Seventh section */}
-            <SeventhSection newsPosts={newsPosts} />
+            {/* Seventh section: Featured Cases */}
+            <SeventhSection newsPosts={newsPosts} featuredCases={featuredCases}/>
 
-            {/* Eight section */}
-            <EigthSection />
+            {/* Eight section: Our Partners */}
+            <EigthSection ourPartners={ourPartners}/>
 
-            {/* Ninth section */}
-            <NinthSection />
+            {/* Ninth section: Office Space */}
+            <NinthSection officeSpace={officeSpace}/>
 
-            {/* Tenth section */}
-            <TenthSection />
+            {/* Tenth section: Our client */}
+            <TenthSection ourClients={ourClients}/>
 
-            {/* Eleventh section */}
-            <EleventhSection />
+            {/* Eleventh section: Awards & Accreditations*/}
+            <EleventhSection awardsAndAccreditation={awardsAndAccreditation} />
 
-            {/* Twelveth section */}
-            <TwelvethSection newsPosts={newsPosts}/>
+            {/* Twelveth section: Latest News */}
+            <TwelvethSection newsPosts={newsPosts} latestNews={latestNews}/>
 
-            {/* Thirteenth section */}
-            <ThirteenthSection />
+            {/* Thirteenth section: Newsletter */}
+            <ThirteenthSection newsletter={newsletter} />
 
-            {/* Fourteenth section */}
-            <FourteenthSection />
+            {/* Fourteenth section: Let's get in touch */}
+            <FourteenthSection letsGetInTouch={letsGetInTouch} headerForm={headerForm}/>
 
             {/* Footer */}
             <Footer/>

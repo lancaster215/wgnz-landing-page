@@ -1,8 +1,13 @@
+import { OfficeSpace } from "@/types";
 import { Stack, Typography } from "@mui/material";
 import { motion, useMotionValue, useTransform, animate, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 
-export default function NinthSection(){
+interface NinthSectionProps {
+    officeSpace: OfficeSpace
+}
+
+export default function NinthSection({officeSpace}: NinthSectionProps){
     const ref = useRef(null);
     // 'once: true' ensures it doesn't restart every time you scroll up and down
     const isInView = useInView(ref, { once: true, amount: 0.3 });
@@ -12,7 +17,7 @@ export default function NinthSection(){
     useEffect(() => {
         console.log('isInView', isInView)
         if(isInView) {
-            const controls = animate(count, 40, { 
+            const controls = animate(count, officeSpace.officeSpaceCount, { 
                 duration: 5, // Seconds
                 // ease: "easeOut"
                 ease: [0.33, 1, 0.68, 1]
@@ -77,7 +82,7 @@ export default function NinthSection(){
                         color: 'white',
                     }}
                 >
-                    Millions square meters of office space was built
+                    {officeSpace.officeSpaceText}
                 </Typography>
             </Stack>
             <Stack
@@ -103,7 +108,7 @@ export default function NinthSection(){
                             color: 'white',
                         }}
                     >
-                        36
+                        {officeSpace.partnersAndCollaboratorsCount}
                     </Typography>
                     <Typography
                         sx={{ 
@@ -115,7 +120,7 @@ export default function NinthSection(){
                             color: 'white',
                         }}
                     >
-                        Partners & Collaborators
+                        {officeSpace.partnersAndCollaboratorsText}
                     </Typography>
                 </Stack>
                 <Stack
@@ -133,7 +138,7 @@ export default function NinthSection(){
                             color: 'white',
                         }}
                     >
-                        1986
+                        {officeSpace.establishedYear}
                     </Typography>
                     <Typography
                         sx={{ 
@@ -145,7 +150,7 @@ export default function NinthSection(){
                             color: 'white',
                         }}
                     >
-                        Established in 1986
+                        {officeSpace.establishedText}
                     </Typography>
                 </Stack>
             </Stack>

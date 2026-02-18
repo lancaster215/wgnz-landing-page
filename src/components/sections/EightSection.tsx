@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import CustomSectionHeader from "../CustomSectionHeader";
+import { OurPartners } from "@/types";
 
 const MotionStack = motion(Stack);
 
@@ -13,7 +14,11 @@ const logosArr = [
     { name: "Merck", logo: '/assets/logos/merck.png', id: 4 }
 ]
 
-export default function EigthSection() {
+interface EightSectionProps {
+    ourPartners: OurPartners
+}
+
+export default function EigthSection({ourPartners}: EightSectionProps) {
     const duplicatedLogos= [...logosArr, ...logosArr, ...logosArr];
     const [direction, setDirection] = useState<string>('right')
 
@@ -28,7 +33,7 @@ export default function EigthSection() {
             <CustomSectionHeader 
                 leftText="Collaborators"
                 leftTextColor="#131313"
-                middleText="Our Partners"
+                middleText={ourPartners.ourPartnersHeader}
                 middleTextColor="#131313"
                 withRightEl={false}
             />
@@ -54,7 +59,7 @@ export default function EigthSection() {
                             letterSpacing: '-1%',
                         }}
                     >
-                        We are proud to collaborate with a diverse group of trusted partners who share our commitment to excellence and innovation. 
+                        {ourPartners.ourPartnersTitle}
                     </Typography>
                 </Stack>
                 <Stack

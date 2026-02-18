@@ -1,6 +1,7 @@
 import { Accordion, AccordionDetails, AccordionSummary, Box, Stack, Typography } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CustomSectionHeader from "../CustomSectionHeader";
+import { OurClients } from "@/types";
 
 const clients = [
     {
@@ -67,7 +68,11 @@ with each project completed we find that you continuously push the envelope. You
 to our next project together`
     },
 ]
-export default function TenthSection(){
+
+interface TenthSectionProps {
+    ourClients: OurClients
+}
+export default function TenthSection({ourClients}: TenthSectionProps){
     return(
         <Stack>
             <Stack
@@ -79,7 +84,7 @@ export default function TenthSection(){
                 <CustomSectionHeader 
                     leftText="Testimonials"
                     leftTextColor="#131313"
-                    middleText="Our client say it best"
+                    middleText={ourClients.ourClientsHeader}
                     middleTextColor="#131313"
                     withRightEl={false}
                 />

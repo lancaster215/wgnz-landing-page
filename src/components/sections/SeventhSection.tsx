@@ -1,7 +1,7 @@
 import { Box, Typography, Stack, Paper, IconButton } from "@mui/material";
 import { motion } from "framer-motion";
 import AddIcon from '@mui/icons-material/Add';
-import { SpaceNewsNode } from "@/types";
+import { FeaturedCases, SpaceNewsNode } from "@/types";
 import CustomButton from "../CustomButton";
 import { useState } from "react";
 import CustomSectionHeader from "../CustomSectionHeader";
@@ -10,9 +10,10 @@ const MotionStack = motion(Stack);
 
 interface SeventSectionProps {
   newsPosts: SpaceNewsNode[];
+  featuredCases: FeaturedCases;
 }
 
-export default function SeventSection({newsPosts}: SeventSectionProps) {
+export default function SeventSection({newsPosts, featuredCases}: SeventSectionProps) {
     const [direction, setDirection] = useState<string>('right')
   // We double the array to create the infinite loop effect
     const newsPostsWithImage = newsPosts.map((news, index) => ({
@@ -30,7 +31,7 @@ export default function SeventSection({newsPosts}: SeventSectionProps) {
             <CustomSectionHeader
                 leftText="Portfolio"
                 leftTextColor="#131313"
-                middleText="Featured Cases"
+                middleText={featuredCases.featuredCasesHeader}
                 middleTextColor="#131313"
                 withRightEl={false}
             />

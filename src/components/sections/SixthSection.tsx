@@ -2,6 +2,7 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Box, Typography, Button, Container } from "@mui/material"
 import { useRef } from "react";
 import CustomButton from "../CustomButton";
+import { FollowLinkedIn } from "@/types";
 
 const MotionBox = motion(Box);
 const images = [
@@ -12,7 +13,11 @@ const images = [
   { src: "/assets/cover-photos/coverphoto8.png", x: 300,  y: 400,  width: 217, height: 153, alt: "overphoto8" }, // Bottom Right
 ];
 
-export default function SixthSection(){
+interface SixthSectionProps {
+    followLinkedin: FollowLinkedIn
+}
+
+export default function SixthSection({ followLinkedin }:SixthSectionProps) {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-10% 0px", amount: 1 });
 
@@ -43,10 +48,10 @@ export default function SixthSection(){
                     fontWeight={800} 
                     sx={{ mb: 2, lineHeight: 1.1, fontSize: { xs: '2.5rem', md: '4rem' } }}
                 >
-                    Follow FDI <br /> on LinkedIn!
+                    {followLinkedin.followLinkedinHeader}
                 </Typography>
                 <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
-                    To keep up to date and be the first to know about the news
+                    {followLinkedin.followLinkedinBody}
                 </Typography>
                 <CustomButton btnColor="#f05032" btnText="Follow us on LinkedIn" btnTextColor="white" btnWidth="454px"/>
             </Container>

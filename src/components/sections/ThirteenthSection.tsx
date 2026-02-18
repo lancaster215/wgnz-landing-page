@@ -3,6 +3,7 @@ import { Box, Typography, Button, Container, TextField, Stack } from "@mui/mater
 import { useRef, useState } from "react";
 import CustomButton from "../CustomButton";
 import Image from "next/image";
+import { NewsLetter } from "@/types";
 
 const MotionBox = motion(Box);
 const images = [
@@ -13,7 +14,11 @@ const images = [
   { src: "/assets/cover-photos/coverphoto8.png", x: 300,  y: 400,  width: 217, height: 153, alt: "overphoto8" }, // Bottom Right
 ];
 
-export default function ThirteenthSection(){
+interface ThirteenthSectionProps {
+    newsletter: NewsLetter
+}
+
+export default function ThirteenthSection({newsletter}: ThirteenthSectionProps){
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-10% 0px", amount: 1 });
     const [form, setForm] = useState({ email: '' });
@@ -55,10 +60,10 @@ export default function ThirteenthSection(){
                     fontWeight={800} 
                     sx={{ mb: 2, lineHeight: 1.1, fontSize: { xs: '2.5rem', md: '4rem' } }}
                 >
-                    Subscribe to <br/> our Newsletter!
+                    {newsletter.newsletterTitle}
                 </Typography>
                 <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
-                    To keep up to date and be the first to know about the news
+                    {newsletter.newsletterBody}
                 </Typography>
 
                 <Stack

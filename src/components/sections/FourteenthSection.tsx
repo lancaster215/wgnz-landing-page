@@ -1,11 +1,17 @@
 import { navTexts } from "@/constants/navTexts";
+import { HeaderForm, LetsGetInTouch } from "@/types";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 
 const socials = ['Instagram', 'LinkedIn']
 
-export default function FourteenthSection() {
+interface FourteenthSectionProps {
+    letsGetInTouch: LetsGetInTouch;
+    headerForm: HeaderForm;
+}
+
+export default function FourteenthSection({letsGetInTouch, headerForm}: FourteenthSectionProps) {
     const [form, setForm] = useState({ email: '' });
         
     const handleSubmit = async (e: React.FormEvent) => {
@@ -90,7 +96,7 @@ export default function FourteenthSection() {
                                     letterSpacing: '-2%',
                                 }}
                             >
-                                Let’s get in touch
+                                {letsGetInTouch.letsGetInTouchHeader}
                             </Typography>
                         </Stack>
                     </Stack>
@@ -194,7 +200,7 @@ export default function FourteenthSection() {
                             color: "rgb(0,0,0,0.5)"
                         }}
                     >
-                        ADH Head Office
+                        {headerForm.headerFormOffice}
                     </Typography>
                     <Typography
                         sx={{
@@ -206,7 +212,7 @@ export default function FourteenthSection() {
                             color: "rgb(0,0,0,1)"
                         }}
                     >
-                        00962795568202
+                        {headerForm.headerFormNumber}
                     </Typography>
                     <Typography
                         sx={{
@@ -218,7 +224,7 @@ export default function FourteenthSection() {
                             color: "rgb(0,0,0,1)"
                         }}
                     >
-                        King Al Hussein Street , Complex <br/> No.159, Amman, 11190, JO
+                        {headerForm.headerFormAddress}
                     </Typography>
                 </Stack>
             </Stack>

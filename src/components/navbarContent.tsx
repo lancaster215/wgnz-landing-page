@@ -3,12 +3,14 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Image from "next/image";
 import { useState } from "react";
 import { navTexts } from "@/constants/navTexts";
+import { HeaderForm } from "@/types";
 
 interface NavbarContentTypes {
     setNavbarExpanded: () => void,
+    headerForm: HeaderForm,
 }
 
-const NavbarContent = ({setNavbarExpanded}: NavbarContentTypes) => {
+const NavbarContent = ({headerForm, setNavbarExpanded}: NavbarContentTypes) => {
     const [form, setForm] = useState({ email: '' });
     
     const handleSubmit = async (e: React.FormEvent) => {
@@ -77,7 +79,7 @@ const NavbarContent = ({setNavbarExpanded}: NavbarContentTypes) => {
                                 fontSize: '14px'
                             }}
                         >
-                            Space flight News Feed
+                            {headerForm.headerFormTag}
                         </Typography>
                     </Stack>
 
@@ -96,7 +98,7 @@ const NavbarContent = ({setNavbarExpanded}: NavbarContentTypes) => {
                                 fontSize: '101px',
                             }}
                         >
-                            Let's get in touch 
+                            {headerForm.headerFormTitle}
                         </Typography>
                     </Stack>
                     
@@ -179,7 +181,7 @@ const NavbarContent = ({setNavbarExpanded}: NavbarContentTypes) => {
                                 letterSpacing: '-2%'
                             }}
                         >
-                            ADH Head Office
+                            {headerForm.headerFormOffice}
                         </Typography>
                         <Typography
                             variant='h5'
@@ -190,7 +192,7 @@ const NavbarContent = ({setNavbarExpanded}: NavbarContentTypes) => {
                                 letterSpacing: '-2%'
                             }}
                         >
-                            00962795568202
+                            {headerForm.headerFormNumber}
                         </Typography>
                         <Typography
                             variant='h5'
@@ -201,7 +203,7 @@ const NavbarContent = ({setNavbarExpanded}: NavbarContentTypes) => {
                                 letterSpacing: '-2%'
                             }}
                         >
-                            King Al Hussein Street , Complex No.159, Amman, 11190, JO
+                            {headerForm.headerFormAddress}
                         </Typography>
                     </Stack>
                 </Stack>

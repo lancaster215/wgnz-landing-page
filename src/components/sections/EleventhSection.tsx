@@ -3,6 +3,7 @@ import CustomSectionHeader from "../CustomSectionHeader";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Image from "next/image";
 import CustomButton from "../CustomButton";
+import { AwardsAndAccreditation } from "@/types";
 
 const data = [
   { year: '2022', type: 'Award', name: 'Construction & Project Delivery Award', hasBadge: false },
@@ -12,7 +13,12 @@ const data = [
   { year: '2019', type: 'Award', name: 'Innovation & Performance Excellence' },
   { year: '2018', type: 'Accreditation', name: 'Environmental (ISO: 14001:2004)', hasBadge: false},
 ];
-export default function EleventhSection() {
+
+interface EleventhSectionProps {
+    awardsAndAccreditation: AwardsAndAccreditation
+}
+
+export default function EleventhSection({awardsAndAccreditation}: EleventhSectionProps) {
     return (
         <Stack>
             <Stack
@@ -24,7 +30,7 @@ export default function EleventhSection() {
                 <CustomSectionHeader
                     leftText="Recognition"
                     leftTextColor="#FFFFFF"
-                    middleText="Awards & Recognition"
+                    middleText={awardsAndAccreditation.awardsAndAccreditationHeader}
                     middleTextColor="#FFFFFF"
                     withRightEl={false}
                 />
